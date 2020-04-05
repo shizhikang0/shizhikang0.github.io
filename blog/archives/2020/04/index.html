@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   
-  <title>所有标签 | 光芒</title>
+  <title>Archives: 2020/4 | 光芒</title>
   
   
 
@@ -50,7 +50,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover tag half'>
+    <cover class='cover  half'>
       
         
   <h1 class='title'>进撃の康</h1>
@@ -285,46 +285,132 @@
 
   <div class="l_body">
     <div class='body-wrapper'>
+      <div class='l_main'>
+	
+		
+  <section class="post-list ">
+    
       
-<div class='l_main'>
-  
+        
+          
+        
+      
     
-      <section class="post-list ">
-        <div class='post-wrapper'>
-          <article id="archive-page" class="post article white-box  widget-blur">
-            <section class="archive">
-              <div class="archive-item archive-year mark">
-                <h2>所有标签</h2>
-              </div>
-              <div class="archive-item all-tags">
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                    <a href="/blog/tags/JVM/" style="font-size: 14px; color: #999">JVM</a> <a href="/blog/tags/mysql/" style="font-size: 14px; color: #999">mysql</a> <a href="/blog/tags/%E5%86%85%E5%AD%98/" style="font-size: 14px; color: #999">内存</a> <a href="/blog/tags/%E6%88%90%E9%95%BF/" style="font-size: 14px; color: #999">成长</a>
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-              </div>
-              <br>
-              
-            </section>
-          </article>
+    
+      
+        
+          <div class='post-wrapper'>
+            <article class="post white-box  body-blur reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2020/04/05/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93alter%E4%BF%AE%E6%94%B9%E8%A1%A8/">
+      Mysql数据库alter修改表
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="http://shizhikang0.github.io" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>时至康</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-edit" aria-hidden="true"></i>
+    <p>发布于：2020年4月5日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <p>@<a href="alter改表的用法">TOC</a><br>如果你想要修改表的信息，你会发现alter很强大。<br>我们可以看到这样一张表。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`score`</span> (</span><br><span class="line">  <span class="string">`student_id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`event_id`</span> <span class="built_in">int</span>(<span class="number">10</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="string">`score`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span>,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`event_id`</span>,<span class="string">`student_id`</span>),</span><br><span class="line">  <span class="keyword">KEY</span> <span class="string">`student_id`</span> (<span class="string">`student_id`</span>),</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> <span class="string">`score_ibfk_1`</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (<span class="string">`event_id`</span>) <span class="keyword">REFERENCES</span> <span class="string">`grade_event`</span> (<span class="string">`event_id`</span>),</span><br><span class="line">  <span class="keyword">CONSTRAINT</span> <span class="string">`score_ibfk_2`</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span> (<span class="string">`student_id`</span>) <span class="keyword">REFERENCES</span> <span class="string">`student`</span> (<span class="string">`student_id`</span>)</span><br><span class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8mb4</span><br></pre></td></tr></table></figure>
+
+<p>从上往下看表的创建语句，alter可以修改表名、列的属性（列名、数据类型、字符集）、索引的属性（索引名）、表的存储引擎、字符集。</p>
+      
+        <div class="button readmore">
+          <a href="/2020/04/05/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93alter%E4%BF%AE%E6%94%B9%E8%A1%A8/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            阅读全文
+          </a>
         </div>
-      </section>
+      
+    </div>
     
+      <div class="full-width auto-padding tags">
+        
+          <a href="/blog/tags/mysql/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> mysql</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+    
+  </section>
   
+    
+    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+    
+    
+
+  
+
+
+	
 </div>
 <aside class='l_side'>
   
@@ -332,10 +418,65 @@
     
       
         
-      
+          <section class='widget  widget-blur blogger'>
+  <div class='content'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='/images/avatar.png'/>
+      </div>
+    
+    
+      <div class='text'>
+        
+        
+          <p>战之必胜</p>
+
+        
+        
+      </div>
+    
+    
+      <div class="social-wrapper">
         
           
+            <a href="mailto:1050906637@qq.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/shizhikang0"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=103256077"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="/qrcode/"
+              class="social fab fa-weixin flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
 
+        
+      
         
       
         
@@ -421,6 +562,112 @@
         
       
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <section class='widget  widget-blur text'>
+  <header class='[object Object]'>
+  <div><i class="fas fa-qrcode fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;微信公众号</div>
+  
+</header>
+
+  <div class='content'>
+    
+      <p>
+        <p>欢迎关注我的微信公众号，(•́₃•̀)</p>
+
+      </p>
+    
+      <p>
+        <p><img src="/images/my_wxgzh_qrcode.jpg" alt=""></p>
+
+      </p>
+    
+  </div>
+</section>
+
+        
+      
+        
+      
+        
+      
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <section class='widget  widget-blur list'>
+  <header class='[object Object]'>
+  <div><i class="fas fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;强烈推荐</div>
+  
+</header>
+
+  <div class='content'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://blog.hvnobug.com/post/github-learning.html#Java-Kotlin" href="https://blog.hvnobug.com/post/github-learning.html#Java-Kotlin"
+          
+            rel="external nofollow noopener noreferrer"
+          
+          
+            target="_blank"
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;计算机相关学习资源
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://xaoxuu.com/wiki/volantis/" href="https://xaoxuu.com/wiki/volantis/"
+          
+            rel="external nofollow noopener noreferrer"
+          
+          
+            target="_blank"
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;Hexo博客主题Volantis文档
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+        
+      
+    
   
 </aside>
 
@@ -502,6 +749,14 @@
   
 </footer>
 <script>setLoadingBarProgress(80);</script>
+
+
+
+
+	<!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
+	
+
+	
 
 
       <script>setLoadingBarProgress(60);</script>
